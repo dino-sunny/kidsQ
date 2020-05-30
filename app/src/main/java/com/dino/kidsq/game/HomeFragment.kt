@@ -9,9 +9,6 @@ import android.widget.Button
 import androidx.navigation.fragment.findNavController
 import com.dino.kidsq.R
 
-/**
- * A simple [Fragment] subclass as the default destination in the navigation.
- */
 class HomeFragment : Fragment() {
 
     override fun onCreateView(
