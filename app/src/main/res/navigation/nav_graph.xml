@@ -25,4 +25,26 @@
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/HomeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/wonFragment"
+        android:name="com.dino.kidsq.won.WonFragment"
+        android:label="won_fragment"
+        tools:layout="@layout/won_fragment" />
+    <fragment
+        android:id="@+id/failedFragment"
+        android:name="com.dino.kidsq.failed.FailedFragment"
+        android:label="failed_fragment"
+        tools:layout="@layout/failed_fragment" />
+    <fragment
+        android:id="@+id/questionsFragment"
+        android:name="com.dino.kidsq.questions.QuestionsFragment"
+        android:label="questions_fragment"
+        tools:layout="@layout/questions_fragment" >
+        <action
+            android:id="@+id/won"
+            app:destination="@id/wonFragment" />
+        <action
+            android:id="@+id/fail"
+            app:destination="@id/failedFragment" />
+    </fragment>
 </navigation>
