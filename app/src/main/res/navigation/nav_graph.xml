@@ -3,28 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/HomeFragment">
+    app:startDestination="@id/startGameFragment">
 
-    <fragment
-        android:id="@+id/HomeFragment"
-        android:name="com.dino.kidsq.game.HomeFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_home">
+<!--    <fragment-->
+<!--        android:id="@+id/HomeFragment"-->
+<!--        android:name="com.dino.kidsq.game.HomeFragment"-->
+<!--        android:label="@string/first_fragment_label"-->
+<!--        tools:layout="@layout/fragment_home">-->
 
-        <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/GameFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/GameFragment"
-        android:name="com.dino.kidsq.game.GameFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_game">
+<!--        <action-->
+<!--            android:id="@+id/action_FirstFragment_to_SecondFragment"-->
+<!--            app:destination="@id/GameFragment" />-->
+<!--        <action-->
+<!--            android:id="@+id/game"-->
+<!--            app:destination="@id/questionsFragment" />-->
+<!--    </fragment>-->
+<!--    <fragment-->
+<!--        android:id="@+id/GameFragment"-->
+<!--        android:name="com.dino.kidsq.game.GameFragment"-->
+<!--        android:label="@string/second_fragment_label"-->
+<!--        tools:layout="@layout/fragment_game">-->
 
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/HomeFragment" />
-    </fragment>
+<!--        <action-->
+<!--            android:id="@+id/action_SecondFragment_to_FirstFragment"-->
+<!--            app:destination="@id/HomeFragment" />-->
+<!--    </fragment>-->
     <fragment
         android:id="@+id/wonFragment"
         android:name="com.dino.kidsq.won.WonFragment"
@@ -46,5 +49,14 @@
         <action
             android:id="@+id/fail"
             app:destination="@id/failedFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/startGameFragment"
+        android:name="com.dino.kidsq.game.StartGameFragment"
+        android:label="StartGameFragment"
+        tools:layout="@layout/start_game_fragment">
+        <action
+            android:id="@+id/startGame"
+            app:destination="@id/questionsFragment" />
     </fragment>
 </navigation>
