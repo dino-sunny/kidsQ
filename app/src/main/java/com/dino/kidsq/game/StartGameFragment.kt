@@ -1,5 +1,6 @@
 package com.dino.kidsq.game
 
+import android.graphics.Color
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -40,5 +41,15 @@ class StartGameFragment : Fragment() {
         view.start_game.setOnClickListener {
             findNavController().navigate(R.id.startGame)
         }
+        setStatusIconColors()
+    }
+
+    /**
+     * Make status bar transparent
+     */
+    private fun setStatusIconColors() {
+        activity?.window?.decorView?.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN)
+        activity?.window?.statusBarColor = Color.parseColor("#FF9800")
     }
 }

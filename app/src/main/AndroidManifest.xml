@@ -12,8 +12,8 @@
         <activity
             android:name=".game.HomeActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar">
-
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize" >
         </activity>
         <activity android:name=".splash.SplashActivity">
             <intent-filter>
