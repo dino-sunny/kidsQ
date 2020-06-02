@@ -7,11 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.dino.kidsq.R
+import com.dino.kidsq.databinding.StartGameFragmentBinding
 import kotlinx.android.synthetic.main.start_game_fragment.view.*
 
 class StartGameFragment : Fragment() {
+    private lateinit var binding : StartGameFragmentBinding
 
     companion object {
         fun newInstance() = StartGameFragment()
@@ -19,11 +22,11 @@ class StartGameFragment : Fragment() {
 
     private lateinit var viewModel: StartGameViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.start_game_fragment, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        // Inflate the layout for this fragment
+        val binding: StartGameFragmentBinding = DataBindingUtil.inflate(
+            inflater, R.layout.start_game_fragment, container, false)
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

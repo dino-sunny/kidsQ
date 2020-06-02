@@ -16,10 +16,7 @@ class WonFragment : Fragment() {
 
     private lateinit var viewModel: WonViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.won_fragment, container, false)
     }
 

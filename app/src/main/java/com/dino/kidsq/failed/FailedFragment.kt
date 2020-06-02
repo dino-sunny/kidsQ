@@ -16,10 +16,7 @@ class FailedFragment : Fragment() {
 
     private lateinit var viewModel: FailedViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.failed_fragment, container, false)
     }
 
