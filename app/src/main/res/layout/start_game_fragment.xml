@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="startGameViewModel"
+            type="com.dino.kidsq.game.StartGameViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -31,6 +38,7 @@
             android:layout_marginBottom="21dp"
             android:backgroundTint="@color/colorPrimaryDark"
             android:src="@drawable/ic_play"
+            android:onClick="@{() -> startGameViewModel.onPlay()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"

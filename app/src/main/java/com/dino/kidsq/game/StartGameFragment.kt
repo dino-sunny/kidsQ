@@ -9,6 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.dino.kidsq.R
 import com.dino.kidsq.databinding.StartGameFragmentBinding
@@ -25,23 +28,24 @@ class StartGameFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        val binding: StartGameFragmentBinding = DataBindingUtil.inflate(
-            inflater, R.layout.start_game_fragment, container, false)
+        val binding: StartGameFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.start_game_fragment, container, false)
+        setStatusIconColors()
+
+        viewModel = ViewModelProvider(this).get(StartGameViewModel::class.java)
+
+        binding.startGameViewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+
+        viewModel.startGame.observe(viewLifecycleOwner, Observer { isStarted ->
+            if (isStarted) gameStarted()
+        })
+
         return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(StartGameViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        view.start_game.setOnClickListener {
-            findNavController().navigate(R.id.startGame)
-        }
-        setStatusIconColors()
+    private fun gameStarted() {
+        findNavController().navigate(R.id.startGame)
+        viewModel.onStarted()
     }
 
     /**
