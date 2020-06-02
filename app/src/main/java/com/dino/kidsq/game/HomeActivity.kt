@@ -1,6 +1,8 @@
 package com.dino.kidsq.game
 
 import android.os.Bundle
+import android.os.Handler
+import android.widget.Toast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
@@ -11,14 +13,22 @@ import com.dino.kidsq.databinding.ActivityHomeBinding
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityHomeBinding
+    private var doubleBackToExitPressedOnce = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
+        exitGame()
+    }
 
-        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+    private fun exitGame() {
+        binding.fab.setOnClickListener { view ->
+            if (doubleBackToExitPressedOnce) {
+                super.onBackPressed()
+            }
+            this.doubleBackToExitPressedOnce = true
+            Toast.makeText(this, "Please click again to exit", Toast.LENGTH_SHORT).show()
+            Handler().postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)
         }
     }
 }
