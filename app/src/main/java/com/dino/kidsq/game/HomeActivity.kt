@@ -24,7 +24,7 @@ class HomeActivity : AppCompatActivity() {
     private fun exitGame() {
         binding.fab.setOnClickListener { view ->
             if (doubleBackToExitPressedOnce) {
-                super.onBackPressed()
+                finish()
             }
             this.doubleBackToExitPressedOnce = true
             Toast.makeText(this, "Please click again to exit", Toast.LENGTH_SHORT).show()
