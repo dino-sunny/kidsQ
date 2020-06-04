@@ -13,5 +13,7 @@ data class Player(
     @ColumnInfo(name = "end_time_milli")
     var endTimeMilli: Long = startTimeMilli,
     @ColumnInfo(name = "score")
-    var score: Int = 0
+    var score: Int = 0,
+    @ColumnInfo(name ="user_name")
+    var userName: String = ""
 )

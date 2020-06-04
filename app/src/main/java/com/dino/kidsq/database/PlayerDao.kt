@@ -13,7 +13,7 @@ interface PlayerDao {
     @Update
     fun update(player: Player)
 
-    @Query("SELECT * FROM player_table WHERE playerId = 1" )
+    @Query("SELECT * FROM player_table ORDER BY playerId DESC LIMIT 1" )
     fun getHighScore(): Player?
 
     @Query("SELECT * FROM player_table ORDER BY playerId DESC LIMIT 1")
