@@ -6,7 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import com.dino.kidsq.R
+import com.dino.kidsq.databinding.QuestionsFragmentBinding
+import com.dino.kidsq.utils.Utils
 
 class QuestionsFragment : Fragment() {
 
@@ -15,15 +19,20 @@ class QuestionsFragment : Fragment() {
     }
 
     private lateinit var viewModel: QuestionsViewModel
+    private lateinit var binding: QuestionsFragmentBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.questions_fragment, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.questions_fragment, container, false)
+        activity?.let { Utils.setStatusIconColors(it,"#FFC107") }
+
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(QuestionsViewModel::class.java)
-        // TODO: Use the ViewModel
+        viewModel = ViewModelProvider(this).get(QuestionsViewModel::class.java)
+        binding.questionViewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
     }
 
 }

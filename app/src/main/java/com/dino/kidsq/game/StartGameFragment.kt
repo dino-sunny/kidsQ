@@ -18,6 +18,7 @@ import com.dino.kidsq.database.PlayerDao
 import com.dino.kidsq.database.PlayerDatabase
 import com.dino.kidsq.database.PlayerDatabase.Companion.getInstance
 import com.dino.kidsq.databinding.StartGameFragmentBinding
+import com.dino.kidsq.utils.Utils
 
 class StartGameFragment : Fragment() {
     private lateinit var binding: StartGameFragmentBinding
@@ -35,7 +36,7 @@ class StartGameFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.start_game_fragment, container, false)
-        setStatusIconColors()
+        activity?.let { Utils.setStatusIconColors(it,"#FF9800") }
 
         val application = requireNotNull(this.activity).application
         val dataSource = PlayerDatabase.getInstance(application).playerDao
@@ -65,12 +66,5 @@ class StartGameFragment : Fragment() {
         findNavController().navigate(R.id.startGame)
     }
 
-    /**
-     * Make status bar transparent
-     */
-    private fun setStatusIconColors() {
-        activity?.window?.decorView?.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN)
-        activity?.window?.statusBarColor = Color.parseColor("#FF9800")
-    }
+
 }
