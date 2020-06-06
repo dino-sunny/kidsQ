@@ -21,21 +21,44 @@ class QuestionsFragment : Fragment() {
 
     private lateinit var viewModel: QuestionsViewModel
     private lateinit var binding: QuestionsFragmentBinding
+    private var questionIndex = 0
+    lateinit var currentQuestion: QuestionsViewModel.Question
+    lateinit var answers: MutableList<String>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.questions_fragment, container, false)
+
         activity?.let { Utils.setStatusIconColors(it,"#FFC107") }
 
-        val args = QuestionsFragmentArgs.fromBundle(requireArguments())
-        binding.textView.text = "Hi ${args.user}"
-        return binding.root
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(QuestionsViewModel::class.java)
         binding.questionViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+
+        val args = QuestionsFragmentArgs.fromBundle(requireArguments())
+        binding.textView.text = "Hi ${args.user}"
+        randomizeQuestions()
+
+        return binding.root
     }
 
+    private fun randomizeQuestions() {
+        viewModel.questions.shuffle()
+        questionIndex = 0
+        setQuestion()
+    }
+
+    private fun setQuestion() {
+        currentQuestion = viewModel.questions[questionIndex]
+        // randomize the answers into a copy of the array
+        answers = currentQuestion.answers.toMutableList()
+        // and shuffle them
+        answers.shuffle()
+
+        binding.title.text = currentQuestion.text
+        binding.firstAnswerRadioButton.text = answers[0]
+        binding.secondAnswerRadioButton.text = answers[1]
+        binding.thirdAnswerRadioButton.text = answers[2]
+        binding.fourthAnswerRadioButton.text = answers[3]
+
+    }
 }
