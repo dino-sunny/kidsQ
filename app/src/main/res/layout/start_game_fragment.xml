@@ -37,8 +37,8 @@
             android:layout_marginEnd="21dp"
             android:layout_marginBottom="21dp"
             android:backgroundTint="@color/colorPrimaryDark"
-            android:src="@drawable/ic_play"
             android:onClick="@{() -> startGameViewModel.onStartGame()}"
+            android:src="@drawable/ic_play"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -53,8 +53,9 @@
             android:ems="10"
             android:fontFamily="casual"
             android:hint="@string/name"
-            android:onTextChanged="@{startGameViewModel::onUserNameChanged}"
             android:inputType="textPersonName"
+            android:onTextChanged="@{startGameViewModel::onUserNameChanged}"
+            android:textAllCaps="true"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             app:backgroundTint="@color/white"
@@ -62,6 +63,20 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textview_first" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="casual"
+            android:text="Enter Your Name"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textview_first"
+            app:layout_constraintVertical_bias="0.824" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

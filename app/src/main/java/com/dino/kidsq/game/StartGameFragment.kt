@@ -1,23 +1,19 @@
 package com.dino.kidsq.game
 
-import android.graphics.Color
 import android.os.Bundle
-import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.dino.kidsq.R
-import com.dino.kidsq.database.PlayerDao
 import com.dino.kidsq.database.PlayerDatabase
-import com.dino.kidsq.database.PlayerDatabase.Companion.getInstance
 import com.dino.kidsq.databinding.StartGameFragmentBinding
+import com.dino.kidsq.questions.QuestionsFragmentDirections
 import com.dino.kidsq.utils.Utils
 
 class StartGameFragment : Fragment() {
@@ -52,18 +48,26 @@ class StartGameFragment : Fragment() {
         binding.startGameViewModel = viewModel
 
         viewModel.startGame.observe(viewLifecycleOwner, Observer { isStarted ->
-            if (isStarted) gameStarted()
+            if (isStarted) {
+                gameStarted()
+            }else{
+                showError()
+            }
         })
 
-        viewModel.highScore.observe(viewLifecycleOwner, Observer { highScore ->
-            Toast.makeText(activity, "" + highScore?.userName, Toast.LENGTH_LONG).show()
-        })
+//        viewModel.highScore.observe(viewLifecycleOwner, Observer { highScore ->
+//            Toast.makeText(activity, "" + highScore?.userName, Toast.LENGTH_LONG).show()
+//        })
 
         return binding.root
     }
 
+    private fun showError() {
+        Toast.makeText(activity,"Enter a Player Name",Toast.LENGTH_SHORT).show()
+    }
+
     private fun gameStarted() {
-        findNavController().navigate(R.id.startGame)
+        findNavController().navigate(StartGameFragmentDirections.startGame(binding.editTextTextPersonName.text.toString(),"1"))
     }
 
 

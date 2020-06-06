@@ -49,6 +49,12 @@
         <action
             android:id="@+id/fail"
             app:destination="@id/failedFragment" />
+        <argument
+            android:name="user"
+            app:argType="string" />
+        <argument
+            android:name="userId"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/startGameFragment"

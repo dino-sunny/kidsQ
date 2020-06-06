@@ -72,7 +72,7 @@ class StartGameViewModel(val database: PlayerDao, application: Application) :
             insert(newPayer)
             player.value = getPlayerFromDatabase()
         }
-        _startGame.value = true
+        _startGame.value = !_result.value.isNullOrEmpty()
     }
     private suspend fun insert(player: Player){
         withContext(Dispatchers.IO){
