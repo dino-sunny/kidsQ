@@ -1,8 +1,20 @@
 package com.dino.kidsq.questions
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class QuestionsViewModel : ViewModel() {
+
+    private var questionIndex = 0
+
+    private val question = MutableLiveData<Question>()
+    val currentQuestion : LiveData<Question>
+        get() = question
+
+    private val answers = MutableLiveData<MutableList<String>>()
+    val answersList : LiveData<MutableList<String>>
+        get() = answers
 
     data class Question(
         val text: String,
@@ -19,4 +31,23 @@ class QuestionsViewModel : ViewModel() {
             answers = listOf("Water", "Dessert", "Land", "Sky")),
         Question(text = "What is the color of sky?",
             answers = listOf("Blue", "Red", "Pink", "Orange")))
+
+    init {
+        randomizeQuestions()
+    }
+
+    private fun randomizeQuestions() {
+        questions.shuffle()
+        questionIndex = 0
+        setQuestion()
+    }
+
+    private fun setQuestion() {
+        question.value = questions[questionIndex]
+        // randomize the answers into a copy of the array
+        answers.value = questions[questionIndex].answers.toMutableList()
+        answers.value!!.shuffle()
+    }
+
 }
+
